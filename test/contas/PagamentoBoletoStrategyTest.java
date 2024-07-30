@@ -29,4 +29,22 @@ class PagamentoBoletoStrategyTest {
 
         assertTrue(resultado.isPresent());
     }
+
+    @Test
+    @DisplayName("Dado que o pagamento foi informado com um valor maior que o máximo para essa estratégia, quando ele for efetuado, deve retornar um erro de validação")
+    void testLimiteMaximoPagamento() {
+        PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
+        LocalDate data = LocalDate.parse("2024-05-25");
+        Conta conta = Conta.build(
+                1L,
+                500.0,
+                data
+        );
+        double valor = 5001;
+        Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
+
+        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta);
+
+        assertTrue(resultado.isPresent());
+    }
 }
