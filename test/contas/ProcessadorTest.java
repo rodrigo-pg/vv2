@@ -19,7 +19,7 @@ class ProcessadorTest {
                 Conta.build(2L, 500.0),
                 Conta.build(3L, 650.0)
         );
-        Processador processador = Processador.build(contas);
+        Processador processador = new Processador(contas);
 
         assertInstanceOf(Processador.class, processador);
     }
@@ -32,7 +32,7 @@ class ProcessadorTest {
                 Conta.build(2L, 500.0),
                 Conta.build(3L, 650.0)
         );
-        Processador processador = Processador.build(
+        Processador processador = new Processador(
                 contas
         );
 
