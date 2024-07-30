@@ -1,5 +1,5 @@
 package contas;
 
 public interface PagamentoStrategy {
-    void efetuarPagamento();
+    void efetuarPagamento(Conta conta);
 }

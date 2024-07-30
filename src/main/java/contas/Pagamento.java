@@ -43,8 +43,8 @@ public class Pagamento {
         return faturaId;
     }
 
-    public void efetuarPagamento() {
-        this.strategy.efetuarPagamento();
+    public void efetuarPagamento(Conta conta) {
+        this.strategy.efetuarPagamento(conta);
     }
 
     public static Pagamento build(

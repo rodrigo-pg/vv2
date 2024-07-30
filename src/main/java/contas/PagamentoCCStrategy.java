@@ -8,7 +8,7 @@ public class PagamentoCCStrategy implements PagamentoStrategy {
     }
 
     @Override
-    public void efetuarPagamento() {
+    public void efetuarPagamento(Conta conta) {
 
     }
 }
