@@ -1,15 +1,20 @@
 package contas;
 
+import java.time.LocalDate;
+
 public class Conta {
     private Long id;
-    private Double saldo;
+    private Double valorPago;
+    private LocalDate data;
 
     private Conta(
             Long id,
-            Double saldo
+            Double valorPago,
+            LocalDate data
     ) {
         this.id = id;
-        this.saldo = saldo;
+        this.valorPago = valorPago;
+        this.data = data;
     }
 
     public Long getId() {
@@ -17,16 +22,22 @@ public class Conta {
     }
 
     public Double getSaldo() {
-        return saldo;
+        return valorPago;
+    }
+
+    public LocalDate getData() {
+        return data;
     }
 
     public static Conta build(
             Long id,
-            Double saldo
+            Double valorPago,
+            LocalDate data
     ) {
         return new Conta(
                 id,
-                saldo
+                valorPago,
+                data
         );
     }
 }

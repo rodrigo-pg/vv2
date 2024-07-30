@@ -22,9 +22,9 @@ class ProcessadorTest {
                 data
         );
         List<Conta> contas = Arrays.asList(
-                Conta.build(1L, 300.0),
-                Conta.build(2L, 500.0),
-                Conta.build(3L, 650.0)
+                Conta.build(1L, 300.0, data),
+                Conta.build(2L, 500.0, data),
+                Conta.build(3L, 650.0, data)
         );
         Processador processador = new Processador(contas, fatura);
 
@@ -41,9 +41,9 @@ class ProcessadorTest {
                 data
         );
         List<Conta> contas = Arrays.asList(
-                Conta.build(1L, 300.0),
-                Conta.build(2L, 500.0),
-                Conta.build(3L, 650.0)
+                Conta.build(1L, 300.0, data),
+                Conta.build(2L, 500.0, data),
+                Conta.build(3L, 650.0, data)
         );
         Processador processador = new Processador(
                 contas,
@@ -63,9 +63,9 @@ class ProcessadorTest {
                 data
         );
         List<Conta> contas = Arrays.asList(
-                Conta.build(1L, 300.0),
-                Conta.build(2L, 500.0),
-                Conta.build(3L, 650.0)
+                Conta.build(1L, 300.0, data),
+                Conta.build(2L, 500.0, data),
+                Conta.build(3L, 650.0, data)
         );
         Processador processador = new Processador(
                 contas,
