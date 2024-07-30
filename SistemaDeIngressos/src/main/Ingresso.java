@@ -2,18 +2,28 @@ package main;
 
 public class Ingresso {
 
-	public Ingresso(int i, TipoIngresso normal) {
-		// TODO Auto-generated constructor stub
+	private int id;
+    private TipoIngresso tipo;
+    private StatusIngresso status;
+
+	public Ingresso(int id, TipoIngresso tipo) {
+		this.id = id;
+        this.tipo = tipo;
+        this.status = StatusIngresso.NAO_VENDIDO;
 	}
 
 	public Object getStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.status;
 	}
 
 	public void marcarComoVendido() {
-		// TODO Auto-generated method stub
+		this.status = StatusIngresso.VENDIDO;
 		
+	}
+
+	public Object getPreco() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
