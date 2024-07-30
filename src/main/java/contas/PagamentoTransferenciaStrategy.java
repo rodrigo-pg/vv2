@@ -2,6 +2,7 @@ package contas;
 
 import utils.AppError;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 public class PagamentoTransferenciaStrategy implements PagamentoStrategy {
@@ -13,6 +14,9 @@ public class PagamentoTransferenciaStrategy implements PagamentoStrategy {
 
     @Override
     public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta, Fatura fatura) {
+        if (conta.getData().isAfter(fatura.getData())) {
+            pagamento.zerar();
+        }
         return Optional.empty();
     }
 }
