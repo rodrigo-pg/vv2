@@ -39,6 +39,6 @@ class PagamentoTest {
         double valor = 200.0;
         Pagamento pagamento = Pagamento.build(valor, data, strategy);
 
-        assertEquals(pagamento.getData(), data);
+        assertEquals(pagamento.getStrategy(), strategy);
     }
 }

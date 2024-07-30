@@ -25,6 +25,10 @@ public class Pagamento {
         return data;
     }
 
+    public PagamentoStrategy getStrategy() {
+        return strategy;
+    }
+
     public static Pagamento build(
             Double valor,
             LocalDate data,
