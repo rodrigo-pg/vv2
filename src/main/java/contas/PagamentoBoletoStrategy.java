@@ -22,6 +22,10 @@ public class PagamentoBoletoStrategy implements PagamentoStrategy{
             return Optional.of(new AppError("Pagamento por boleto não pode ser maior que R$ 5.000,00"));
         }
 
+        if (pagamento.getData().isAfter(conta.getData())) {
+            pagamento.adicionarJuros(0.1f);
+        }
+
         return Optional.empty();
     }
 }

@@ -47,4 +47,24 @@ class PagamentoBoletoStrategyTest {
 
         assertTrue(resultado.isPresent());
     }
+
+    @Test
+    @DisplayName("Dado que o pagamento foi informado com uma data posterior à data da conta, quando ele for efetuado, seu valor deve ser acrescido 10%")
+    void testAtrasoPagamento() {
+        PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
+        LocalDate data = LocalDate.parse("2024-05-25");
+        LocalDate dataPagamento = LocalDate.parse("2024-05-26");
+        Conta conta = Conta.build(
+                1L,
+                500.0,
+                data
+        );
+        double valor = 600;
+        Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
+        double valorComJuros = pagamento.getValor() + (pagamento.getValor() * 0.1);
+
+        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta);
+
+        assertEquals(valorComJuros, pagamento.getValor().floatValue());
+    }
 }

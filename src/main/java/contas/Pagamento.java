@@ -43,6 +43,10 @@ public class Pagamento {
         return faturaId;
     }
 
+    public void adicionarJuros(float porcentagem) {
+        this.valor += this.valor * porcentagem;
+    }
+
     public void efetuarPagamento(Conta conta) {
         this.strategy.efetuarPagamento(this, conta);
     }
