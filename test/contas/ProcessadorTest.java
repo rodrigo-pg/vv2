@@ -25,7 +25,7 @@ class ProcessadorTest {
     }
 
     @Test
-    @DisplayName("Dado que o processador foi criado com uma lista de contas, quando as contas fossem consultadas, deveriam ser as mesmas da criação")
+    @DisplayName("Dado que o processador foi criado com uma lista de contas, quando o processador fosse criado, as contas deveriam iguais as fornecidas")
     void testContasProcessador() {
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0),
