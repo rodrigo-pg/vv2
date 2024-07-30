@@ -47,8 +47,12 @@ public class Pagamento {
         this.valor += this.valor * porcentagem;
     }
 
-    public void efetuarPagamento(Conta conta) {
-        this.strategy.efetuarPagamento(this, conta);
+    public void efetuarPagamento(Conta conta, Fatura fatura) {
+        this.strategy.efetuarPagamento(this, conta, fatura);
+    }
+
+    public void zerar() {
+        this.valor = 0.0;
     }
 
     public static Pagamento build(

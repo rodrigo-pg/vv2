@@ -76,6 +76,7 @@ class PagamentoTest {
     @DisplayName("Dado que a efetuação do pagamento foi requisitada, a chamada deveria ser redirecionada para a estratégia de pagamento")
     void testExecutarPagamento() {
         LocalDate data = LocalDate.parse("2024-05-25");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
         Conta conta = Conta.build(
                 1L,
                 500.0,
@@ -85,8 +86,8 @@ class PagamentoTest {
         double valor = 200.0;
         Pagamento pagamento = Pagamento.build(valor, data, pagamentoStrategySpy, 1L, 1L);
 
-        pagamento.efetuarPagamento(conta);
+        pagamento.efetuarPagamento(conta, fatura);
 
-        verify(pagamentoStrategySpy, times(1)).efetuarPagamento(pagamento, conta);
+        verify(pagamentoStrategySpy, times(1)).efetuarPagamento(pagamento, conta, fatura);
     }
 }

@@ -12,7 +12,7 @@ public class PagamentoBoletoStrategy implements PagamentoStrategy{
     }
 
     @Override
-    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta) {
+    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta, Fatura fatura) {
         Double valorPagamento = pagamento.getValor();
         if (pagamento.getValor() < 0.01) {
             return Optional.of(new AppError("Pagamento por boleto não pode ser menor que R$ 0,01"));

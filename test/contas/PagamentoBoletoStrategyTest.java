@@ -17,6 +17,7 @@ class PagamentoBoletoStrategyTest {
     void testLimiteMinimoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
         Conta conta = Conta.build(
                 1L,
                 500.0,
@@ -25,7 +26,7 @@ class PagamentoBoletoStrategyTest {
         double valor = 0.005;
         Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
 
-        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta);
+        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
         assertTrue(resultado.isPresent());
     }
@@ -35,6 +36,7 @@ class PagamentoBoletoStrategyTest {
     void testLimiteMaximoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
         Conta conta = Conta.build(
                 1L,
                 500.0,
@@ -43,7 +45,7 @@ class PagamentoBoletoStrategyTest {
         double valor = 5001;
         Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
 
-        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta);
+        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
         assertTrue(resultado.isPresent());
     }
@@ -54,6 +56,7 @@ class PagamentoBoletoStrategyTest {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
         Conta conta = Conta.build(
                 1L,
                 500.0,
@@ -63,7 +66,7 @@ class PagamentoBoletoStrategyTest {
         Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
         double valorComJuros = pagamento.getValor() + (pagamento.getValor() * 0.1);
 
-        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta);
+        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
         assertEquals(valorComJuros, pagamento.getValor().floatValue());
     }

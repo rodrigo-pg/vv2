@@ -2,6 +2,7 @@ package contas;
 
 import utils.AppError;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 public class PagamentoCCStrategy implements PagamentoStrategy {
@@ -12,7 +13,10 @@ public class PagamentoCCStrategy implements PagamentoStrategy {
     }
 
     @Override
-    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta) {
+    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta, Fatura fatura) {
+        if (ChronoUnit.DAYS.between(fatura.getData(), conta.getData()) < 15) {
+            pagamento.zerar();
+        }
         return Optional.empty();
     }
 }

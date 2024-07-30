@@ -12,7 +12,7 @@ public class PagamentoTransferenciaStrategy implements PagamentoStrategy {
     }
 
     @Override
-    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta) {
+    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta, Fatura fatura) {
         return Optional.empty();
     }
 }
