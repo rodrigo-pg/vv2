@@ -20,7 +20,7 @@ class PagamentoTest {
         PagamentoStrategy strategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
         double valor = 200.0;
-        Pagamento pagamento = Pagamento.build(valor, data, strategy);
+        Pagamento pagamento = Pagamento.build(valor, data, strategy, 1L, 1L);
 
         assertEquals(pagamento.getValor(), valor);
     }
@@ -31,7 +31,7 @@ class PagamentoTest {
         PagamentoStrategy strategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
         double valor = 200.0;
-        Pagamento pagamento = Pagamento.build(valor, data, strategy);
+        Pagamento pagamento = Pagamento.build(valor, data, strategy, 1L, 1L);
 
         assertEquals(pagamento.getData(), data);
     }
@@ -42,9 +42,21 @@ class PagamentoTest {
         PagamentoStrategy strategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
         double valor = 200.0;
-        Pagamento pagamento = Pagamento.build(valor, data, strategy);
+        Pagamento pagamento = Pagamento.build(valor, data, strategy, 1L, 1L);
 
         assertEquals(pagamento.getStrategy(), strategy);
+    }
+
+    @Test
+    @DisplayName("Dado que uma conta foi fornecido na criação de um pagamento, esse mesma conta deveria constar no pagamento")
+    void testContaIdInformadoPagamento() {
+        PagamentoStrategy strategy = new PagamentoBoletoStrategy();
+        LocalDate data = LocalDate.parse("2024-05-25");
+        Long contaId = 1L;
+        double valor = 200.0;
+        Pagamento pagamento = Pagamento.build(valor, data, strategy, contaId, 1L);
+
+        assertEquals(pagamento.getContaId(), contaId);
     }
 
     @Test
@@ -53,7 +65,7 @@ class PagamentoTest {
         PagamentoStrategy pagamentoStrategySpy = spy(new PagamentoBoletoStrategy());
         LocalDate data = LocalDate.parse("2024-05-25");
         double valor = 200.0;
-        Pagamento pagamento = Pagamento.build(valor, data, pagamentoStrategySpy);
+        Pagamento pagamento = Pagamento.build(valor, data, pagamentoStrategySpy, 1L, 1L);
 
         pagamento.efetuarPagamento();
 
