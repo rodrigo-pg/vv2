@@ -23,6 +23,17 @@ public class IngressoTest {
     }
 	
 	@Test
+	void testCriacaoIngresso() {
+		assertEquals(1, ingressoNormal.getId());
+		assertEquals(TipoIngresso.NORMAL, ingressoNormal.getTipo());
+		assertEquals(2, ingressoVip.getId());
+		assertEquals(TipoIngresso.VIP, ingressoVip.getTipo());
+		assertEquals(3, ingressoMeiaEntrada.getId());
+		assertEquals(TipoIngresso.MEIA_ENTRADA, ingressoMeiaEntrada.getTipo());
+        
+	}
+	
+	@Test
 	void testStatusInicial() {
         assertEquals(StatusIngresso.NAO_VENDIDO, ingressoNormal.getStatus());
         assertEquals(StatusIngresso.NAO_VENDIDO, ingressoVip.getStatus());
@@ -36,6 +47,21 @@ public class IngressoTest {
 
         ingressoVip.marcarComoVendido();
         assertEquals(StatusIngresso.VENDIDO, ingressoVip.getStatus());
+    }
+	
+	@Test
+    public void testPrecoIngressoNormal() {
+        assertEquals(10.0, ingressoNormal.getPreco());
+    }
+	
+	@Test
+    public void testPrecoIngressoVip() {
+        assertEquals(20.0, ingressoVip.getPreco());
+    }
+
+    @Test
+    public void testPrecoIngressoMeiaEntrada() {
+        assertEquals(5.0, ingressoMeiaEntrada.getPreco());
     }
 	
 
