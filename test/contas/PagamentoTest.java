@@ -87,6 +87,6 @@ class PagamentoTest {
 
         pagamento.efetuarPagamento(conta);
 
-        verify(pagamentoStrategySpy, times(1)).efetuarPagamento(conta);
+        verify(pagamentoStrategySpy, times(1)).efetuarPagamento(pagamento, conta);
     }
 }

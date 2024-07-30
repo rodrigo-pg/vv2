@@ -1,5 +1,9 @@
 package contas;
 
+import utils.AppError;
+
+import java.util.Optional;
+
 public class PagamentoTransferenciaStrategy implements PagamentoStrategy {
     private String tipo = "TRANSFERENCIA_BANCARIA";
 
@@ -8,7 +12,7 @@ public class PagamentoTransferenciaStrategy implements PagamentoStrategy {
     }
 
     @Override
-    public void efetuarPagamento(Conta conta) {
-
+    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta) {
+        return Optional.empty();
     }
 }

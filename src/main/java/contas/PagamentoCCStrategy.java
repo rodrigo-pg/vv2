@@ -1,5 +1,9 @@
 package contas;
 
+import utils.AppError;
+
+import java.util.Optional;
+
 public class PagamentoCCStrategy implements PagamentoStrategy {
     private String tipo = "CARTAO_CREDITO";
 
@@ -8,7 +12,7 @@ public class PagamentoCCStrategy implements PagamentoStrategy {
     }
 
     @Override
-    public void efetuarPagamento(Conta conta) {
-
+    public Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta) {
+        return Optional.empty();
     }
 }

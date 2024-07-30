@@ -1,5 +1,9 @@
 package contas;
 
+import utils.AppError;
+
+import java.util.Optional;
+
 public interface PagamentoStrategy {
-    void efetuarPagamento(Conta conta);
+    Optional<AppError> efetuarPagamento(Pagamento pagamento, Conta conta);
 }

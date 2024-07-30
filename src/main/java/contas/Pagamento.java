@@ -44,7 +44,7 @@ public class Pagamento {
     }
 
     public void efetuarPagamento(Conta conta) {
-        this.strategy.efetuarPagamento(conta);
+        this.strategy.efetuarPagamento(this, conta);
     }
 
     public static Pagamento build(
