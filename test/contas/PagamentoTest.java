@@ -60,6 +60,19 @@ class PagamentoTest {
     }
 
     @Test
+    @DisplayName("Dado que uma fatura foi fornecido na criação de um pagamento, esse mesma fatura deveria constar no pagamento")
+    void testFaturaIdInformadoPagamento() {
+        PagamentoStrategy strategy = new PagamentoBoletoStrategy();
+        LocalDate data = LocalDate.parse("2024-05-25");
+        Long contaId = 1L;
+        Long faturaId = 1L;
+        double valor = 200.0;
+        Pagamento pagamento = Pagamento.build(valor, data, strategy, contaId, faturaId);
+
+        assertEquals(pagamento.getFaturaId(), faturaId);
+    }
+
+    @Test
     @DisplayName("Dado que a efetuação do pagamento foi requisitada, a chamada deveria ser redirecionada para a estratégia de pagamento")
     void testExecutarPagamento() {
         PagamentoStrategy pagamentoStrategySpy = spy(new PagamentoBoletoStrategy());
