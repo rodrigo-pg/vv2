@@ -5,13 +5,16 @@ import java.time.LocalDate;
 public class Pagamento {
     private Double valor;
     private LocalDate data;
+    private PagamentoStrategy strategy;
 
     private Pagamento(
             Double valor,
-            LocalDate data
+            LocalDate data,
+            PagamentoStrategy strategy
     ) {
         this.valor = valor;
         this.data = data;
+        this.strategy = strategy;
     }
 
     public Double getValor() {
@@ -24,11 +27,13 @@ public class Pagamento {
 
     public static Pagamento build(
             Double valor,
-            LocalDate data
+            LocalDate data,
+            PagamentoStrategy strategy
     ) {
         return new Pagamento(
                 valor,
-                data
+                data,
+                strategy
         );
     }
 }
