@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,11 @@ import main.TipoIngresso;
 
 public class LoteIngressosTest {
 	private LoteIngressos lote;
+	private List<Ingresso> ingressos;
 	
 	@BeforeEach
     void setUp() {
-		List<Ingresso> ingressos = preparaLoteIngresso();
+		ingressos = preparaLoteIngresso();
         lote = new LoteIngressos(1, ingressos, 15.0);
         
     }
@@ -40,6 +42,14 @@ public class LoteIngressosTest {
         
         return ingressos;
 		
+	}
+	
+	@Test
+	void testCriacaoLote() {
+		assertEquals(1, lote.getId());
+		assertEquals(ingressos, lote.getIngressos());
+		assertEquals(15.0, lote.getDesconto());
+        
 	}
 
 	@Test
@@ -69,6 +79,32 @@ public class LoteIngressosTest {
             assertEquals("Distribuição de ingressos está incorreta", e.getMessage());
         }
        
+    }
+
+	
+	@Test
+    void testAplicarDesconto() {
+        lote.aplicarDesconto(10);
+
+        assertEquals(18.0, ingressos.get(0).getPreco());
+        assertEquals(5.0, ingressos.get(20).getPreco());
+        assertEquals(9.0, ingressos.get(30).getPreco());
+    }
+
+    @Test
+    void testDescontoMaximo() {
+    	lote.aplicarDesconto(25);
+
+        assertEquals(15.0, ingressos.get(0).getPreco());
+        assertEquals(5.0, ingressos.get(20).getPreco());
+        assertEquals(7.5, ingressos.get(30).getPreco());
+    }
+    
+    @Test
+    void testAplicaDescontoInvalido() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            lote.aplicarDesconto(26);
+        }, "Desconto não pode ser maior que 25%");
     }
 
 }
