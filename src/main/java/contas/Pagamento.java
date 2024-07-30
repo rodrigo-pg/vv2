@@ -29,6 +29,10 @@ public class Pagamento {
         return strategy;
     }
 
+    public void efetuarPagamento() {
+        this.strategy.efetuarPagamento();
+    }
+
     public static Pagamento build(
             Double valor,
             LocalDate data,
