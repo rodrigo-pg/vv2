@@ -5,12 +5,15 @@ public class Ingresso {
 	private int id;
     private TipoIngresso tipo;
     private StatusIngresso status;
-    private static final double PRECO_NORMAL = 10.0;
+	private double precoBase;
+	private double precoDesconto;
 
-	public Ingresso(int id, TipoIngresso tipo) {
+	public Ingresso(int id, TipoIngresso tipo, double precoBase) {
 		this.id = id;
         this.tipo = tipo;
         this.status = StatusIngresso.NAO_VENDIDO;
+        this.precoBase = precoBase;
+        this.precoDesconto = precoBase;
 	}
 
 	public Object getStatus() {
@@ -25,12 +28,12 @@ public class Ingresso {
 	public double getPreco() {
 		switch (this.tipo) {
 			case VIP:
-				return PRECO_NORMAL * 2;
+				return precoBase * 2;
 	        case MEIA_ENTRADA:
-	            return PRECO_NORMAL / 2;
+	            return precoBase / 2;
 	        case NORMAL:
 	        default:
-	            return PRECO_NORMAL;
+	            return precoBase;
 		
 		}
 	}
@@ -43,10 +46,15 @@ public class Ingresso {
 		return this.id;
 	}
 
+	public double getPrecoComDesconto() {
+		return this.precoDesconto;
+	}
+
 	public void aplicarDesconto(int desconto) {
 		if(this.tipo != TipoIngresso.MEIA_ENTRADA) {
-			// falta implementar
-			
+			double precoAtual = this.getPreco();
+	
+			this.precoDesconto = precoAtual - (precoAtual*desconto/100);
 		}
 		
 	}
