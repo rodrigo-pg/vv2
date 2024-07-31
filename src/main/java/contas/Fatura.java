@@ -21,6 +21,10 @@ public class Fatura {
         this.status = status;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public LocalDate getData() {
         return data;
     }
@@ -31,6 +35,10 @@ public class Fatura {
 
     public String getNome() {
         return nome;
+    }
+
+    public void pagar() {
+        this.status = "PAGA";
     }
 
     static Fatura build(

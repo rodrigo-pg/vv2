@@ -24,10 +24,6 @@ public class Conta {
         return id;
     }
 
-    public Double getSaldo() {
-        return valorPago;
-    }
-
     public LocalDate getData() {
         return data;
     }
