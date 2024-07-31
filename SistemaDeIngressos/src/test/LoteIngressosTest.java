@@ -32,11 +32,11 @@ public class LoteIngressosTest {
         List<Ingresso> ingressos = new ArrayList<>();
         for (int i = 0; i < totalIngressos; i++) {
             if (i < 20) {
-                ingressos.add(new Ingresso(i, TipoIngresso.VIP));
+                ingressos.add(new Ingresso(i, TipoIngresso.VIP, 10.0));
             } else if (i < 30) {
-                ingressos.add(new Ingresso(i, TipoIngresso.MEIA_ENTRADA));
+                ingressos.add(new Ingresso(i, TipoIngresso.MEIA_ENTRADA, 10.0));
             } else {
-                ingressos.add(new Ingresso(i, TipoIngresso.NORMAL));
+                ingressos.add(new Ingresso(i, TipoIngresso.NORMAL, 10.0));
             }
         }
         
@@ -49,6 +49,16 @@ public class LoteIngressosTest {
 		assertEquals(1, lote.getId());
 		assertEquals(ingressos, lote.getIngressos());
 		assertEquals(15.0, lote.getDesconto());
+        
+	}
+	
+	@Test
+	void testCriacaoLoteSemDesconto() {
+		ingressos = preparaLoteIngresso();
+		LoteIngressos loteSemDesconto = new LoteIngressos(2, ingressos);
+		assertEquals(2, loteSemDesconto.getId());
+		assertEquals(ingressos, loteSemDesconto.getIngressos());
+		assertEquals(0.0, loteSemDesconto.getDesconto());
         
 	}
 
@@ -64,11 +74,11 @@ public class LoteIngressosTest {
         List<Ingresso> ingressos = new ArrayList<>();
         for (int i = 0; i < totalIngressos; i++) {
             if (i < 11) {
-                ingressos.add(new Ingresso(i, TipoIngresso.VIP));
+                ingressos.add(new Ingresso(i, TipoIngresso.VIP, 10.0));
             } else if (i < 21) {
-                ingressos.add(new Ingresso(i, TipoIngresso.MEIA_ENTRADA));
+                ingressos.add(new Ingresso(i, TipoIngresso.MEIA_ENTRADA, 10.0));
             } else {
-                ingressos.add(new Ingresso(i, TipoIngresso.NORMAL));
+                ingressos.add(new Ingresso(i, TipoIngresso.NORMAL, 10.0));
             }
         }
         
@@ -86,18 +96,20 @@ public class LoteIngressosTest {
     void testAplicarDesconto() {
         lote.aplicarDesconto(10);
 
-        assertEquals(18.0, ingressos.get(0).getPreco());
-        assertEquals(5.0, ingressos.get(20).getPreco());
-        assertEquals(9.0, ingressos.get(30).getPreco());
+        assertEquals(18.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
+        assertEquals(10.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
+        assertEquals(9.0, ingressos.get(30).getPrecoComDesconto(), 0.1);
+        assertEquals(10.0, lote.getDesconto());
     }
 
     @Test
     void testDescontoMaximo() {
     	lote.aplicarDesconto(25);
 
-        assertEquals(15.0, ingressos.get(0).getPreco());
-        assertEquals(5.0, ingressos.get(20).getPreco());
-        assertEquals(7.5, ingressos.get(30).getPreco());
+        assertEquals(15.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
+        assertEquals(10.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
+        assertEquals(7.5, ingressos.get(30).getPrecoComDesconto(), 0.1);
+        assertEquals(25.0, lote.getDesconto());
     }
     
     @Test

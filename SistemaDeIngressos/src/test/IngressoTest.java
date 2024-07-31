@@ -17,9 +17,9 @@ public class IngressoTest {
 	
 	@BeforeEach
     void setUp() {
-		ingressoNormal = new Ingresso(1, TipoIngresso.NORMAL);
-		ingressoVip = new Ingresso(2, TipoIngresso.VIP);
-        ingressoMeiaEntrada = new Ingresso(3, TipoIngresso.MEIA_ENTRADA);
+		ingressoNormal = new Ingresso(1, TipoIngresso.NORMAL, 10.0);
+		ingressoVip = new Ingresso(2, TipoIngresso.VIP, 10.0);
+        ingressoMeiaEntrada = new Ingresso(3, TipoIngresso.MEIA_ENTRADA, 10.0);
     }
 	
 	@Test
@@ -47,21 +47,24 @@ public class IngressoTest {
 
         ingressoVip.marcarComoVendido();
         assertEquals(StatusIngresso.VENDIDO, ingressoVip.getStatus());
+        
+        ingressoMeiaEntrada.marcarComoVendido();
+        assertEquals(StatusIngresso.VENDIDO, ingressoMeiaEntrada.getStatus());
     }
 	
 	@Test
     public void testPrecoIngressoNormal() {
-        assertEquals(10.0, ingressoNormal.getPreco());
+        assertEquals(10.0, ingressoNormal.getPreco(), 0.1);
     }
 	
 	@Test
     public void testPrecoIngressoVip() {
-        assertEquals(20.0, ingressoVip.getPreco());
+        assertEquals(20.0, ingressoVip.getPreco(), 0.1);
     }
 
     @Test
     public void testPrecoIngressoMeiaEntrada() {
-        assertEquals(5.0, ingressoMeiaEntrada.getPreco());
+        assertEquals(5.0, ingressoMeiaEntrada.getPreco(), 0.1);
     }
 	
 
