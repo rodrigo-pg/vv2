@@ -31,7 +31,7 @@ public class Processador {
                     conta.getData(),
                     pagamentoStrategy,
                     conta.getId(),
-                    1L
+                    fatura.getId()
             );
             pagamento.efetuarPagamento(conta, fatura);
             return pagamento.getValor();

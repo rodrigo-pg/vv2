@@ -20,7 +20,8 @@ class ProcessadorTest {
                 "Rodrigo",
                 205.90,
                 data,
-                FaturaStatus.PENDENTE
+                FaturaStatus.PENDENTE,
+                1L
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
@@ -40,7 +41,8 @@ class ProcessadorTest {
                 "Rodrigo",
                 205.90,
                 data,
-                FaturaStatus.PENDENTE
+                FaturaStatus.PENDENTE,
+                1L
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
@@ -63,7 +65,8 @@ class ProcessadorTest {
                 "Rodrigo",
                 205.90,
                 data,
-                FaturaStatus.PENDENTE
+                FaturaStatus.PENDENTE,
+                1L
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
@@ -84,7 +87,8 @@ class ProcessadorTest {
                 "Rodrigo",
                 1500.0,
                 LocalDate.parse("2023-02-20"),
-                FaturaStatus.PENDENTE
+                FaturaStatus.PENDENTE,
+                1L
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 500.0, LocalDate.parse("2023-02-20"), TipoPagamento.BOLETO),
@@ -107,7 +111,8 @@ class ProcessadorTest {
                 "Rodrigo",
                 1500.0,
                 LocalDate.parse("2023-02-20"),
-                FaturaStatus.PENDENTE
+                FaturaStatus.PENDENTE,
+                1L
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 700.0, LocalDate.parse("2023-02-05"), TipoPagamento.CARTAO_CREDITO),
@@ -129,7 +134,8 @@ class ProcessadorTest {
                 "Rodrigo",
                 1500.0,
                 LocalDate.parse("2023-02-20"),
-                FaturaStatus.PENDENTE
+                FaturaStatus.PENDENTE,
+                1L
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 700.0, LocalDate.parse("2023-02-06"), TipoPagamento.CARTAO_CREDITO),

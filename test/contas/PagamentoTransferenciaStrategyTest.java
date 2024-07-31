@@ -15,7 +15,7 @@ class PagamentoTransferenciaStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-27");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
         PagamentoTransferenciaStrategy pagamentoBoletoStrategy = new PagamentoTransferenciaStrategy();
         Conta conta = Conta.build(
                 1L,
@@ -37,7 +37,7 @@ class PagamentoTransferenciaStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-26");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
         PagamentoTransferenciaStrategy pagamentoBoletoStrategy = new PagamentoTransferenciaStrategy();
         Conta conta = Conta.build(
                 1L,
@@ -59,7 +59,7 @@ class PagamentoTransferenciaStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-24");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
         PagamentoTransferenciaStrategy pagamentoBoletoStrategy = new PagamentoTransferenciaStrategy();
         Conta conta = Conta.build(
                 1L,
