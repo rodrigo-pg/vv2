@@ -118,5 +118,21 @@ public class LoteIngressosTest {
             lote.aplicarDesconto(26);
         }, "Desconto não pode ser maior que 25%");
     }
+    
+    @Test
+    void testAplicaDescontoVazio() {
+    	LoteIngressos lote2 = new LoteIngressos(1, ingressos);
+        assertThrows(IllegalArgumentException.class, () -> {
+        	lote2.aplicarDesconto();
+        }, "O desconto não foi passado, informe um valor de desconto válido.");
+    }
+    
+    @Test
+    void testAplicaDescontoSemParametros() {
+    	lote.aplicarDesconto();
+    	assertEquals(17.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
+        assertEquals(5.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
+        assertEquals(8.5, ingressos.get(30).getPrecoComDesconto(), 0.1);
+    }
 
 }

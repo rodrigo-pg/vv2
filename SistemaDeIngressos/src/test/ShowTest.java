@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -75,6 +74,24 @@ public class ShowTest {
 	    assertEquals(350, relatorio.getNumeroIngressosNormal());
 	    assertEquals(-100, relatorio.getReceitaLiquida(), 0.01);
 	    assertEquals(StatusFinanceiro.PREJUÍZO, relatorio.getStatusFinanceiro());
+	}
+	
+	@Test
+	public void testGerarRelatorioEstavel() {
+		Show show2 = new Show("29/07/2024", "Artista Teste", 1000.0, 3925.0, lote, false);
+		List<Ingresso> ingressos = preparaLoteIngresso();
+		LoteIngressos lote = new LoteIngressos(1, ingressos, 15.0);
+		lote.aplicarDesconto();
+        
+		show2.adicionarLote(lote);
+
+	    Relatorio relatorio = show2.gerarRelatorio();
+
+	    assertEquals(100, relatorio.getNumeroIngressosVIP());
+	    assertEquals(50, relatorio.getNumeroIngressosMeiaEntrada());
+	    assertEquals(350, relatorio.getNumeroIngressosNormal());
+	    assertEquals(0, relatorio.getReceitaLiquida(), 0.01);
+	    assertEquals(StatusFinanceiro.ESTÁVEL, relatorio.getStatusFinanceiro());
 	}
 	
 	private List<Ingresso> preparaLoteIngresso() {
