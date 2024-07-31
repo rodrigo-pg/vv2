@@ -1,8 +1,8 @@
-package main;
+package main.java.model;
 
-import main.enums.StatusIngresso;
-import main.enums.TipoIngresso;
-import main.utils.Validator;
+import main.java.enums.StatusIngresso;
+import main.java.enums.TipoIngresso;
+import main.java.utils.Validator;
 
 public class Ingresso {
 

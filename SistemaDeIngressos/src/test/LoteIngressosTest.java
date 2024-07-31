@@ -10,9 +10,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Ingresso;
-import main.LoteIngressos;
-import main.enums.TipoIngresso;
+import main.java.enums.TipoIngresso;
+import main.java.model.Ingresso;
+import main.java.model.LoteIngressos;
 
 
 public class LoteIngressosTest {

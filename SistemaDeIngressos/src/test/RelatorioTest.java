@@ -8,9 +8,9 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Relatorio;
-import main.enums.StatusFinanceiro;
-import main.enums.TipoIngresso;
+import main.java.enums.StatusFinanceiro;
+import main.java.enums.TipoIngresso;
+import main.java.model.Relatorio;
 
 public class RelatorioTest {
 	

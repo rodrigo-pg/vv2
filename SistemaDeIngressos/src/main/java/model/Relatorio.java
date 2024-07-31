@@ -1,10 +1,9 @@
-package main;
+package main.java.model;
 
 import java.util.Map;
 
-import main.enums.StatusFinanceiro;
-import main.enums.TipoIngresso;
-
+import main.java.enums.StatusFinanceiro;
+import main.java.enums.TipoIngresso;
 
 public class Relatorio {
 

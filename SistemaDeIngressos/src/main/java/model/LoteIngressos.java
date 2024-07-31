@@ -1,8 +1,8 @@
-package main;
+package main.java.model;
 
 import java.util.List;
 
-import main.utils.Validator;
+import main.java.utils.Validator;
 
 public class LoteIngressos {
 

@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Ingresso;
-import main.enums.StatusIngresso;
-import main.enums.TipoIngresso;
+import main.java.enums.StatusIngresso;
+import main.java.enums.TipoIngresso;
+import main.java.model.Ingresso;
 
 public class IngressoTest {
 	

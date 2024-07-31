@@ -1,11 +1,12 @@
-package main;
+package main.java.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.enums.StatusFinanceiro;
-import main.enums.StatusIngresso;
-import main.enums.TipoIngresso;
+import main.java.enums.StatusFinanceiro;
+import main.java.enums.StatusIngresso;
+import main.java.enums.TipoIngresso;
+
 
 public class Show {
 
