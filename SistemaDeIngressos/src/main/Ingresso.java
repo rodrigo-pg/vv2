@@ -19,7 +19,7 @@ public class Ingresso {
         this.precoDesconto = this.getPreco();
 	}
 
-	public Object getStatus() {
+	public StatusIngresso getStatus() {
 		return this.status;
 	}
 
@@ -45,7 +45,7 @@ public class Ingresso {
 		return this.tipo;
 	}
 
-	public Object getId() {
+	public int getId() {
 		return this.id;
 	}
 

@@ -61,9 +61,6 @@ public class LoteIngressos {
 	}
 
 	private void verificaDesconto(double desconto) {
-		if (desconto == 0.0) {
-	        throw new IllegalArgumentException("O desconto não foi passado, informe um valor de desconto válido.");
-	    }
 		if(desconto < 0 || desconto > 25) {
 			throw new IllegalArgumentException("Desconto não pode ser maior que 25% e menor que 0%");
 		}
@@ -74,16 +71,11 @@ public class LoteIngressos {
 		
 	}
 
-	public void adicionarIngresso(Ingresso ingressoNormal) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Object getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public Object getDesconto() {
+	public double getDesconto() {
 		return this.desconto;
 	}
 
