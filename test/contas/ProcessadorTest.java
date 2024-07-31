@@ -100,4 +100,26 @@ class ProcessadorTest {
 
         assertEquals("PAGA", processador.getFatura().getStatus());
     }
+
+    @Test
+    void testCaso2Processador() {
+        Fatura fatura = Fatura.build(
+                "Rodrigo",
+                1500.0,
+                LocalDate.parse("2023-02-20"),
+                "PENDENTE"
+        );
+        List<Conta> contas = Arrays.asList(
+                Conta.build(1L, 700.0, LocalDate.parse("2023-02-05"), TipoPagamento.CARTAO_CREDITO),
+                Conta.build(2L, 800.0, LocalDate.parse("2023-02-17"), TipoPagamento.TRANSFERENCIA)
+        );
+        Processador processador = new Processador(
+                contas,
+                fatura
+        );
+
+        processador.processar();
+
+        assertEquals("PAGA", processador.getFatura().getStatus());
+    }
 }
