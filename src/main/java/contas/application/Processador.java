@@ -4,7 +4,7 @@ import contas.domain.entities.Conta;
 import contas.domain.entities.Fatura;
 import contas.domain.entities.Pagamento;
 import contas.domain.strategies.pagamento.PagamentoStrategy;
-import contas.domain.strategies.pagamento.PagamentoStrategyFactory;
+import contas.domain.factories.PagamentoStrategyFactory;
 
 import java.util.List;
 
