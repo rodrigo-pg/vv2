@@ -57,11 +57,11 @@ public class Show {
 		return this.artista;
 	}
 
-	public Object getCache() {
+	public double getCache() {
 		return this.cache;
 	}
 
-	public Object getDespesasInfraestrutura() {
+	public double getDespesasInfraestrutura() {
 		return this.despesasInfraestrutura;
 	}
 
@@ -70,9 +70,8 @@ public class Show {
 	}
 
 
-	public Object getLoteIngressos() {
-		// TODO Auto-generated method stub
-		return null;
+	public LoteIngressos getLoteIngressos() {
+		return this.loteIngressos;
 	}
 
 

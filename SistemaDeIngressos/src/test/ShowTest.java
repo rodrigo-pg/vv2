@@ -35,9 +35,9 @@ public class ShowTest {
 	void testCriacaoShow() {
 		assertEquals("29/07/2024", show.getData());
 		assertEquals("Artista Teste", show.getArtista());
-        assertEquals(1000.0, show.getCache());
-        assertEquals(2000.0, show.getDespesasInfraestrutura());
-        assertNull(show.getLoteIngressos());
+        assertEquals(1000.0, show.getCache(), 0.1);
+        assertEquals(2000.0, show.getDespesasInfraestrutura(), 0.1);
+        assertEquals(lote, show.getLoteIngressos());
         assertTrue(show.isDataEspecial());	
 	}
 	

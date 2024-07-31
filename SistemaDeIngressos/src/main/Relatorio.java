@@ -21,19 +21,19 @@ public class Relatorio {
 		return this.receitaLiquida;
 	}
 
-	public Object getStatusFinanceiro() {
+	public StatusFinanceiro getStatusFinanceiro() {
 		return this.status;
 	}
 
-	public Object getNumeroIngressosVIP() {
+	public int getNumeroIngressosVIP() {
 		return this.numIngressosVendidos.get(TipoIngresso.VIP);
 	}
 
-	public Object getNumeroIngressosMeiaEntrada() {
+	public int getNumeroIngressosMeiaEntrada() {
 		return this.numIngressosVendidos.get(TipoIngresso.MEIA_ENTRADA);
 	}
 
-	public Object getNumeroIngressosNormal() {
+	public int getNumeroIngressosNormal() {
 		return this.numIngressosVendidos.get(TipoIngresso.NORMAL);
 	}
 
