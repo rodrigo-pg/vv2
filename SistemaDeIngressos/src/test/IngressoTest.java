@@ -66,6 +66,24 @@ public class IngressoTest {
     public void testPrecoIngressoMeiaEntrada() {
         assertEquals(5.0, ingressoMeiaEntrada.getPreco(), 0.1);
     }
+    
+    @Test
+    public void testPrecoIngressoNormalComDesconto() {
+    	ingressoNormal.aplicarDesconto(10);
+    	assertEquals(9.0, ingressoNormal.getPrecoComDesconto(), 0.1);
+    }
+    
+    @Test
+    public void testPrecoIngressoVipComDesconto() {
+    	ingressoVip.aplicarDesconto(10);
+    	assertEquals(18.0, ingressoVip.getPrecoComDesconto(), 0.1);
+    }
+    
+    @Test
+    public void testPrecoIngressoMeiaEntradaComDesconto() {
+    	ingressoMeiaEntrada.aplicarDesconto(10);
+    	assertEquals(5.0, ingressoMeiaEntrada.getPrecoComDesconto(), 0.1);
+    }
 	
 
 }
