@@ -101,7 +101,7 @@ public class IngressoTest {
     public void testAplicarDescontoAcimaDoLimite() {	
     	assertThrows(IllegalArgumentException.class, () -> {
     		ingressoNormal.aplicarDesconto(26);
-        }, "Desconto não pode ser maior que 25%");
+        }, "Desconto não pode ser maior que 26%");
     }	
 
 }
