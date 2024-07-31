@@ -87,8 +87,6 @@ public class Show {
 			receitaBruta -= this.despesasInfraestrutura;
 		}
 		
-		System.out.println(receitaBruta);
-		
 		return receitaBruta;
 		
 	}
