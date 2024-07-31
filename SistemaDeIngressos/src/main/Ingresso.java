@@ -2,6 +2,7 @@ package main;
 
 import main.enums.StatusIngresso;
 import main.enums.TipoIngresso;
+import main.utils.Validator;
 
 public class Ingresso {
 
@@ -10,6 +11,7 @@ public class Ingresso {
     private StatusIngresso status;
 	private double precoBase;
 	private double precoDesconto;
+	private Validator validator;
 
 	public Ingresso(int id, TipoIngresso tipo, double precoBase) {
 		this.id = id;
@@ -17,6 +19,7 @@ public class Ingresso {
         this.status = StatusIngresso.NAO_VENDIDO;
         this.precoBase = precoBase;
         this.precoDesconto = this.getPreco();
+        this.validator = new Validator();
 	}
 
 	public StatusIngresso getStatus() {
@@ -54,6 +57,7 @@ public class Ingresso {
 	}
 
 	public void aplicarDesconto(double desconto) {
+		this.validator.validarDesconto(desconto);
 		if(this.tipo != TipoIngresso.MEIA_ENTRADA) {
 			double precoAtual = this.getPreco();
 	
@@ -61,5 +65,6 @@ public class Ingresso {
 		}
 		
 	}
+
 
 }

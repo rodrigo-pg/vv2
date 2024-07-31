@@ -2,11 +2,14 @@ package main;
 
 import java.util.List;
 
+import main.utils.Validator;
+
 public class LoteIngressos {
 
 	private int id;
 	private List<Ingresso> ingressos;
 	private double desconto;
+	private Validator validator;
 
 	public LoteIngressos(int id, List<Ingresso> ingressos, double desconto) {
 		this(id, ingressos);
@@ -17,6 +20,7 @@ public class LoteIngressos {
 		verificaDistribuicaoIngressos(ingressos);
 		this.id = id;
 		this.ingressos = ingressos;
+		this.validator = new Validator();
 	}
 
 	private void verificaDistribuicaoIngressos(List<Ingresso> ingressos) {
@@ -52,18 +56,12 @@ public class LoteIngressos {
 	}
 
 	public void aplicarDesconto(double desconto) {
-		verificaDesconto(desconto);
+		this.validator.validarDesconto(desconto);
 		for(Ingresso ingresso: this.ingressos) {
 			ingresso.aplicarDesconto(desconto);
 		}
 		this.setDesconto(desconto);
 		
-	}
-
-	private void verificaDesconto(double desconto) {
-		if(desconto < 0 || desconto > 25) {
-			throw new IllegalArgumentException("Desconto não pode ser maior que 25% e menor que 0%");
-		}
 	}
 
 	private void setDesconto(double desconto) {
