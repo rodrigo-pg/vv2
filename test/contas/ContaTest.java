@@ -16,7 +16,8 @@ class ContaTest {
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                data
+                data,
+                TipoPagamento.BOLETO
         );
 
         assertInstanceOf(Conta.class, conta);

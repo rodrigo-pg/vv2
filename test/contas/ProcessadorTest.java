@@ -19,12 +19,13 @@ class ProcessadorTest {
         Fatura fatura = Fatura.build(
                 "Rodrigo",
                 205.90,
-                data
+                data,
+                "PENDENTE"
         );
         List<Conta> contas = Arrays.asList(
-                Conta.build(1L, 300.0, data),
-                Conta.build(2L, 500.0, data),
-                Conta.build(3L, 650.0, data)
+                Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
+                Conta.build(2L, 500.0, data, TipoPagamento.BOLETO),
+                Conta.build(3L, 650.0, data, TipoPagamento.BOLETO)
         );
         Processador processador = new Processador(contas, fatura);
 
@@ -38,12 +39,13 @@ class ProcessadorTest {
         Fatura fatura = Fatura.build(
                 "Rodrigo",
                 205.90,
-                data
+                data,
+                "PENDENTE"
         );
         List<Conta> contas = Arrays.asList(
-                Conta.build(1L, 300.0, data),
-                Conta.build(2L, 500.0, data),
-                Conta.build(3L, 650.0, data)
+                Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
+                Conta.build(2L, 500.0, data, TipoPagamento.BOLETO),
+                Conta.build(3L, 650.0, data, TipoPagamento.BOLETO)
         );
         Processador processador = new Processador(
                 contas,
@@ -60,12 +62,13 @@ class ProcessadorTest {
         Fatura fatura = Fatura.build(
                 "Rodrigo",
                 205.90,
-                data
+                data,
+                "PENDENTE"
         );
         List<Conta> contas = Arrays.asList(
-                Conta.build(1L, 300.0, data),
-                Conta.build(2L, 500.0, data),
-                Conta.build(3L, 650.0, data)
+                Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
+                Conta.build(2L, 500.0, data, TipoPagamento.BOLETO),
+                Conta.build(3L, 650.0, data, TipoPagamento.BOLETO)
         );
         Processador processador = new Processador(
                 contas,

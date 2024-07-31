@@ -15,12 +15,13 @@ class PagamentoTransferenciaStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-27");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, "PENDENTE");
         PagamentoTransferenciaStrategy pagamentoBoletoStrategy = new PagamentoTransferenciaStrategy();
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                dataConta
+                dataConta,
+                TipoPagamento.BOLETO
         );
         double valor = 600;
         Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
@@ -36,12 +37,13 @@ class PagamentoTransferenciaStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-26");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, "PENDENTE");
         PagamentoTransferenciaStrategy pagamentoBoletoStrategy = new PagamentoTransferenciaStrategy();
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                dataConta
+                dataConta,
+                TipoPagamento.BOLETO
         );
         double valor = 600;
         Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
@@ -57,12 +59,13 @@ class PagamentoTransferenciaStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-24");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, "PENDENTE");
         PagamentoTransferenciaStrategy pagamentoBoletoStrategy = new PagamentoTransferenciaStrategy();
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                dataConta
+                dataConta,
+                TipoPagamento.BOLETO
         );
         double valor = 600;
         Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);

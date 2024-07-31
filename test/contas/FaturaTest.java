@@ -18,7 +18,8 @@ class FaturaTest {
         Fatura fatura = Fatura.build(
                 "Rodrigo",
                 205.90,
-                data
+                data,
+                "PENDENTE"
         );
 
         assertInstanceOf(Fatura.class, fatura);

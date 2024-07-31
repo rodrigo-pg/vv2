@@ -17,11 +17,12 @@ class PagamentoBoletoStrategyTest {
     void testLimiteMinimoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, "PENDENTE");
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                data
+                data,
+                TipoPagamento.BOLETO
         );
         double valor = 0.005;
         Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
@@ -36,11 +37,12 @@ class PagamentoBoletoStrategyTest {
     void testLimiteMaximoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, "PENDENTE");
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                data
+                data,
+                TipoPagamento.BOLETO
         );
         double valor = 5001;
         Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
@@ -56,11 +58,12 @@ class PagamentoBoletoStrategyTest {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, "PENDENTE");
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                data
+                data,
+                TipoPagamento.BOLETO
         );
         double valor = 600;
         Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
