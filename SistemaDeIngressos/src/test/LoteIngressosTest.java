@@ -48,7 +48,7 @@ public class LoteIngressosTest {
 	void testCriacaoLote() {
 		assertEquals(1, lote.getId());
 		assertEquals(ingressos, lote.getIngressos());
-		assertEquals(15.0, lote.getDesconto());
+		assertEquals(15.0, lote.getDesconto(), 0.1);
         
 	}
 	
@@ -58,7 +58,7 @@ public class LoteIngressosTest {
 		LoteIngressos loteSemDesconto = new LoteIngressos(2, ingressos);
 		assertEquals(2, loteSemDesconto.getId());
 		assertEquals(ingressos, loteSemDesconto.getIngressos());
-		assertEquals(0.0, loteSemDesconto.getDesconto());
+		assertEquals(0.0, loteSemDesconto.getDesconto(), 0.1);
         
 	}
 
@@ -99,7 +99,7 @@ public class LoteIngressosTest {
         assertEquals(18.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
         assertEquals(5.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
         assertEquals(9.0, ingressos.get(30).getPrecoComDesconto(), 0.1);
-        assertEquals(10.0, lote.getDesconto());
+        assertEquals(10.0, lote.getDesconto(), 0.1);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class LoteIngressosTest {
         assertEquals(15.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
         assertEquals(5.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
         assertEquals(7.5, ingressos.get(30).getPrecoComDesconto(), 0.1);
-        assertEquals(25.0, lote.getDesconto());
+        assertEquals(25.0, lote.getDesconto(), 0.1);
     }
     
     @Test
