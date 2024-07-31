@@ -28,8 +28,11 @@ public class Ingresso {
 
 	public void marcarComoVendido() {
 		this.status = StatusIngresso.VENDIDO;
-		
 	}
+	
+	public void marcarComoNaoVendido() {
+        this.status = StatusIngresso.NAO_VENDIDO;
+    }
 
 	public double getPreco() {
 		switch (this.tipo) {
