@@ -14,8 +14,8 @@ import main.Ingresso;
 import main.LoteIngressos;
 import main.Relatorio;
 import main.Show;
-import main.StatusFinanceiro;
-import main.TipoIngresso;
+import main.enums.StatusFinanceiro;
+import main.enums.TipoIngresso;
 
 
 public class ShowTest {

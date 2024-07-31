@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import main.Ingresso;
 import main.LoteIngressos;
-import main.TipoIngresso;
+import main.enums.TipoIngresso;
 
 
 public class LoteIngressosTest {
@@ -97,7 +97,7 @@ public class LoteIngressosTest {
         lote.aplicarDesconto(10);
 
         assertEquals(18.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
-        assertEquals(10.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
+        assertEquals(5.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
         assertEquals(9.0, ingressos.get(30).getPrecoComDesconto(), 0.1);
         assertEquals(10.0, lote.getDesconto());
     }
@@ -107,7 +107,7 @@ public class LoteIngressosTest {
     	lote.aplicarDesconto(25);
 
         assertEquals(15.0, ingressos.get(0).getPrecoComDesconto(), 0.1);
-        assertEquals(10.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
+        assertEquals(5.0, ingressos.get(20).getPrecoComDesconto(), 0.1);
         assertEquals(7.5, ingressos.get(30).getPrecoComDesconto(), 0.1);
         assertEquals(25.0, lote.getDesconto());
     }

@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.Ingresso;
-import main.StatusIngresso;
-import main.TipoIngresso;
+import main.enums.StatusIngresso;
+import main.enums.TipoIngresso;
 
 public class IngressoTest {
 	

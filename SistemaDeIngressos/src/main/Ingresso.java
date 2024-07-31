@@ -1,5 +1,8 @@
 package main;
 
+import main.enums.StatusIngresso;
+import main.enums.TipoIngresso;
+
 public class Ingresso {
 
 	private int id;

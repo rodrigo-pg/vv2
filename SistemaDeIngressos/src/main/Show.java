@@ -3,6 +3,10 @@ package main;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.enums.StatusFinanceiro;
+import main.enums.StatusIngresso;
+import main.enums.TipoIngresso;
+
 public class Show {
 
 	private String data;

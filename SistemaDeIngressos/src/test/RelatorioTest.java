@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.Relatorio;
-import main.StatusFinanceiro;
-import main.TipoIngresso;
+import main.enums.StatusFinanceiro;
+import main.enums.TipoIngresso;
 
 public class RelatorioTest {
 	
