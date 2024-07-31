@@ -5,6 +5,7 @@ import java.util.Map;
 import main.enums.StatusFinanceiro;
 import main.enums.TipoIngresso;
 
+
 public class Relatorio {
 
 	private Map<TipoIngresso, Integer> numIngressosVendidos;
