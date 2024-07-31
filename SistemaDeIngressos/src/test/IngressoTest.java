@@ -1,12 +1,11 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.ErrorException;
 import main.Ingresso;
 import main.enums.StatusIngresso;
 import main.enums.TipoIngresso;
@@ -99,14 +98,10 @@ public class IngressoTest {
     }
     
     @Test
-    public void testAplicarDescontoAcimaDoLimite() {
-    	try {
+    public void testAplicarDescontoAcimaDoLimite() {	
+    	assertThrows(IllegalArgumentException.class, () -> {
     		ingressoNormal.aplicarDesconto(26);
-            fail("Esperava a exceção ErrorException");
-        } catch (ErrorException e) {
-            assertEquals("Desconto não pode ser maior que 25%", e.getMessage());
-        }
-    }
-	
+        }, "Desconto não pode ser maior que 25%");
+    }	
 
 }
