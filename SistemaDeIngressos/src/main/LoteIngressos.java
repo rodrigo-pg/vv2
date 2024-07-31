@@ -9,10 +9,14 @@ public class LoteIngressos {
 	private double desconto;
 
 	public LoteIngressos(int id, List<Ingresso> ingressos, double desconto) {
+		this(id, ingressos);
+		this.desconto = desconto;
+	}
+
+	public LoteIngressos(int id, List<Ingresso> ingressos) {
 		verificaDistribuicaoIngressos(ingressos);
 		this.id = id;
 		this.ingressos = ingressos;
-		this.desconto = desconto;
 	}
 
 	private void verificaDistribuicaoIngressos(List<Ingresso> ingressos) {
@@ -48,9 +52,23 @@ public class LoteIngressos {
 	}
 
 	public void aplicarDesconto(int desconto) {
+		verificaDesconto(desconto);
 		for(Ingresso ingresso: this.ingressos) {
 			ingresso.aplicarDesconto(desconto);
 		}
+		this.setDesconto(desconto);
+		
+	}
+
+	private void verificaDesconto(int desconto) {
+		if(desconto < 0 || desconto > 25) {
+			throw new IllegalArgumentException("Desconto não pode ser maior que 25% e menor que 0%");
+		}
+		
+	}
+
+	private void setDesconto(int desconto) {
+		this.desconto = desconto;
 		
 	}
 
