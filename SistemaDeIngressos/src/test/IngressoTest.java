@@ -54,6 +54,18 @@ public class IngressoTest {
     }
 	
 	@Test
+    void testMarcarComoNaoVendido() {
+        ingressoNormal.marcarComoNaoVendido();
+        assertEquals(StatusIngresso.NAO_VENDIDO, ingressoNormal.getStatus());
+
+        ingressoVip.marcarComoNaoVendido();
+        assertEquals(StatusIngresso.NAO_VENDIDO, ingressoVip.getStatus());
+        
+        ingressoMeiaEntrada.marcarComoNaoVendido();
+        assertEquals(StatusIngresso.NAO_VENDIDO, ingressoMeiaEntrada.getStatus());
+    }
+	
+	@Test
     public void testPrecoIngressoNormal() {
         assertEquals(10.0, ingressoNormal.getPreco(), 0.1);
     }

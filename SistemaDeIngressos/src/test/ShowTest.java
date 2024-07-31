@@ -59,6 +59,24 @@ public class ShowTest {
 	    assertEquals(StatusFinanceiro.LUCRO, relatorio.getStatusFinanceiro());
 	}
 	
+	@Test
+	public void testGerarRelatorioComPrejuizo() {
+		Show show2 = new Show("29/07/2024", "Artista Teste", 1000.0, 3500.0, lote, true);
+		List<Ingresso> ingressos = preparaLoteIngresso();
+		LoteIngressos lote = new LoteIngressos(1, ingressos, 15.0);
+		lote.aplicarDesconto();
+        
+		show2.adicionarLote(lote);
+
+	    Relatorio relatorio = show2.gerarRelatorio();
+
+	    assertEquals(100, relatorio.getNumeroIngressosVIP());
+	    assertEquals(50, relatorio.getNumeroIngressosMeiaEntrada());
+	    assertEquals(350, relatorio.getNumeroIngressosNormal());
+	    assertEquals(-100, relatorio.getReceitaLiquida(), 0.01);
+	    assertEquals(StatusFinanceiro.PREJUÍZO, relatorio.getStatusFinanceiro());
+	}
+	
 	private List<Ingresso> preparaLoteIngresso() {
 		int totalIngressos = 500;
 
