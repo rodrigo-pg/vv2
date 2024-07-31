@@ -25,30 +25,6 @@ public class Show {
 		this.isDataEspecial = isDataEspecial;
 	}
 
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
-	public void setCache(double cache) {
-		this.cache = cache;
-		
-	}
-
-	public void setDespesasInfraestrutura(double despesas) {
-		this.despesasInfraestrutura = despesas;
-		
-	}
-
-	public void setDataEspecial(boolean isDataEspecial) {
-		this.isDataEspecial = isDataEspecial;
-		
-	}
-
-	public void setArtista(String artista) {
-		this.artista = artista;
-	}
-
 	public String getData() {
 		return this.data;
 	}
