@@ -1,10 +1,12 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import main.ErrorException;
 import main.Ingresso;
 import main.enums.StatusIngresso;
 import main.enums.TipoIngresso;
@@ -83,6 +85,27 @@ public class IngressoTest {
     public void testPrecoIngressoMeiaEntradaComDesconto() {
     	ingressoMeiaEntrada.aplicarDesconto(10);
     	assertEquals(5.0, ingressoMeiaEntrada.getPrecoComDesconto(), 0.1);
+    }
+    
+    @Test
+    public void testDescontoNoLimite() {
+    	ingressoNormal.aplicarDesconto(25);
+    	ingressoVip.aplicarDesconto(25);
+    	ingressoMeiaEntrada.aplicarDesconto(25);
+    	
+    	assertEquals(7.5, ingressoNormal.getPrecoComDesconto(), 0.1);
+    	assertEquals(15.0, ingressoVip.getPrecoComDesconto(), 0.1);
+    	assertEquals(5.0, ingressoMeiaEntrada.getPrecoComDesconto(), 0.1);
+    }
+    
+    @Test
+    public void testAplicarDescontoAcimaDoLimite() {
+    	try {
+    		ingressoNormal.aplicarDesconto(26);
+            fail("Esperava a exceção ErrorException");
+        } catch (ErrorException e) {
+            assertEquals("Desconto não pode ser maior que 25%", e.getMessage());
+        }
     }
 	
 
