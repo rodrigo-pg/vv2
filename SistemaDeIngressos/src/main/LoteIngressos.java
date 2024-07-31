@@ -51,7 +51,7 @@ public class LoteIngressos {
 		return this.ingressos;
 	}
 
-	public void aplicarDesconto(int desconto) {
+	public void aplicarDesconto(double desconto) {
 		verificaDesconto(desconto);
 		for(Ingresso ingresso: this.ingressos) {
 			ingresso.aplicarDesconto(desconto);
@@ -60,14 +60,16 @@ public class LoteIngressos {
 		
 	}
 
-	private void verificaDesconto(int desconto) {
+	private void verificaDesconto(double desconto) {
+		if (desconto == 0.0) {
+	        throw new IllegalArgumentException("O desconto não foi passado, informe um valor de desconto válido.");
+	    }
 		if(desconto < 0 || desconto > 25) {
 			throw new IllegalArgumentException("Desconto não pode ser maior que 25% e menor que 0%");
 		}
-		
 	}
 
-	private void setDesconto(int desconto) {
+	private void setDesconto(double desconto) {
 		this.desconto = desconto;
 		
 	}
@@ -83,6 +85,15 @@ public class LoteIngressos {
 
 	public Object getDesconto() {
 		return this.desconto;
+	}
+
+	public void aplicarDesconto() {
+		if (this.desconto == 0.0) {
+	        throw new IllegalArgumentException("O desconto não foi passado, informe um valor de desconto válido.");
+	    }
+		
+		this.aplicarDesconto(this.desconto);
+		
 	}
 
 }

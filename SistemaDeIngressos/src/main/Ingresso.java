@@ -13,7 +13,7 @@ public class Ingresso {
         this.tipo = tipo;
         this.status = StatusIngresso.NAO_VENDIDO;
         this.precoBase = precoBase;
-        this.precoDesconto = precoBase;
+        this.precoDesconto = this.getPreco();
 	}
 
 	public Object getStatus() {
@@ -50,7 +50,7 @@ public class Ingresso {
 		return this.precoDesconto;
 	}
 
-	public void aplicarDesconto(int desconto) {
+	public void aplicarDesconto(double desconto) {
 		if(this.tipo != TipoIngresso.MEIA_ENTRADA) {
 			double precoAtual = this.getPreco();
 	
