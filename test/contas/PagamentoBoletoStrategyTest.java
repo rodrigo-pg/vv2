@@ -17,7 +17,7 @@ class PagamentoBoletoStrategyTest {
     void testLimiteMinimoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, "PENDENTE");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE);
         Conta conta = Conta.build(
                 1L,
                 500.0,
@@ -37,7 +37,7 @@ class PagamentoBoletoStrategyTest {
     void testLimiteMaximoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, "PENDENTE");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE);
         Conta conta = Conta.build(
                 1L,
                 500.0,
@@ -58,7 +58,7 @@ class PagamentoBoletoStrategyTest {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
         LocalDate data = LocalDate.parse("2024-05-25");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, "PENDENTE");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE);
         Conta conta = Conta.build(
                 1L,
                 500.0,

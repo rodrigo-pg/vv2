@@ -17,7 +17,7 @@ class PagamentoCCStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-23");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, "PENDENTE");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE);
         PagamentoCCStrategy pagamentoBoletoStrategy = new PagamentoCCStrategy();
         Conta conta = Conta.build(
                 1L,
@@ -39,7 +39,7 @@ class PagamentoCCStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-27");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, "PENDENTE");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE);
         PagamentoCCStrategy pagamentoBoletoStrategy = new PagamentoCCStrategy();
         Conta conta = Conta.build(
                 1L,
@@ -61,7 +61,7 @@ class PagamentoCCStrategyTest {
         LocalDate dataConta = LocalDate.parse("2024-05-10");
         LocalDate dataPagamento = LocalDate.parse("2024-05-26");
         LocalDate dataFatura = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, "PENDENTE");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE);
         PagamentoCCStrategy pagamentoBoletoStrategy = new PagamentoCCStrategy();
         Conta conta = Conta.build(
                 1L,

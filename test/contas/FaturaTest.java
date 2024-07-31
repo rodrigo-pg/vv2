@@ -19,7 +19,7 @@ class FaturaTest {
                 "Rodrigo",
                 205.90,
                 data,
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
 
         assertInstanceOf(Fatura.class, fatura);

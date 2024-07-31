@@ -7,13 +7,13 @@ public class Fatura {
     private String nome;
     private Double total;
     private LocalDate data;
-    private String status = "PENDENTE";
+    private FaturaStatus status = FaturaStatus.PENDENTE;
 
     private Fatura(
             String nome,
             Double total,
             LocalDate data,
-            String status
+            FaturaStatus status
     ) {
         this.nome = nome;
         this.total = total;
@@ -21,7 +21,7 @@ public class Fatura {
         this.status = status;
     }
 
-    public String getStatus() {
+    public FaturaStatus getStatus() {
         return status;
     }
 
@@ -38,14 +38,14 @@ public class Fatura {
     }
 
     public void pagar() {
-        this.status = "PAGA";
+        this.status = FaturaStatus.PAGA;
     }
 
     static Fatura build(
             String nome,
             Double total,
             LocalDate data,
-            String status
+            FaturaStatus status
     ) {
         return new Fatura(
                 nome,

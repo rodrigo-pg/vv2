@@ -20,7 +20,7 @@ class ProcessadorTest {
                 "Rodrigo",
                 205.90,
                 data,
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
@@ -40,7 +40,7 @@ class ProcessadorTest {
                 "Rodrigo",
                 205.90,
                 data,
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
@@ -63,7 +63,7 @@ class ProcessadorTest {
                 "Rodrigo",
                 205.90,
                 data,
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 300.0, data, TipoPagamento.BOLETO),
@@ -84,7 +84,7 @@ class ProcessadorTest {
                 "Rodrigo",
                 1500.0,
                 LocalDate.parse("2023-02-20"),
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 500.0, LocalDate.parse("2023-02-20"), TipoPagamento.BOLETO),
@@ -98,7 +98,7 @@ class ProcessadorTest {
 
         processador.processar();
 
-        assertEquals("PAGA", processador.getFatura().getStatus());
+        assertEquals(FaturaStatus.PAGA, processador.getFatura().getStatus());
     }
 
     @Test
@@ -107,7 +107,7 @@ class ProcessadorTest {
                 "Rodrigo",
                 1500.0,
                 LocalDate.parse("2023-02-20"),
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 700.0, LocalDate.parse("2023-02-05"), TipoPagamento.CARTAO_CREDITO),
@@ -120,7 +120,7 @@ class ProcessadorTest {
 
         processador.processar();
 
-        assertEquals("PAGA", processador.getFatura().getStatus());
+        assertEquals(FaturaStatus.PAGA, processador.getFatura().getStatus());
     }
 
     @Test
@@ -129,7 +129,7 @@ class ProcessadorTest {
                 "Rodrigo",
                 1500.0,
                 LocalDate.parse("2023-02-20"),
-                "PENDENTE"
+                FaturaStatus.PENDENTE
         );
         List<Conta> contas = Arrays.asList(
                 Conta.build(1L, 700.0, LocalDate.parse("2023-02-06"), TipoPagamento.CARTAO_CREDITO),
@@ -142,6 +142,6 @@ class ProcessadorTest {
 
         processador.processar();
 
-        assertEquals("PENDENTE", processador.getFatura().getStatus());
+        assertEquals(FaturaStatus.PENDENTE, processador.getFatura().getStatus());
     }
 }
