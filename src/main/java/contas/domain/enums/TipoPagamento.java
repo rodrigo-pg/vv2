@@ -1,4 +1,4 @@
-package contas;
+package contas.domain.enums;
 
 public enum TipoPagamento {
     BOLETO,

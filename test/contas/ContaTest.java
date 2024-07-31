@@ -1,5 +1,7 @@
 package contas;
 
+import contas.domain.entities.Conta;
+import contas.domain.enums.TipoPagamento;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

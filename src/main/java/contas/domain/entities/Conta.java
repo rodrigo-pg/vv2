@@ -1,4 +1,6 @@
-package contas;
+package contas.domain.entities;
+
+import contas.domain.enums.TipoPagamento;
 
 import java.time.LocalDate;
 

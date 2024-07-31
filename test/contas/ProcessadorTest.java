@@ -1,10 +1,14 @@
 package contas;
 
+import contas.application.Processador;
+import contas.domain.entities.Conta;
+import contas.domain.entities.Fatura;
+import contas.domain.enums.FaturaStatus;
+import contas.domain.enums.TipoPagamento;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

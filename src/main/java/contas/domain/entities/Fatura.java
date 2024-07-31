@@ -1,7 +1,8 @@
-package contas;
+package contas.domain.entities;
+
+import contas.domain.enums.FaturaStatus;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Fatura {
     private String nome;
@@ -48,7 +49,7 @@ public class Fatura {
         this.status = FaturaStatus.PAGA;
     }
 
-    static Fatura build(
+    public static Fatura build(
             String nome,
             Double total,
             LocalDate data,

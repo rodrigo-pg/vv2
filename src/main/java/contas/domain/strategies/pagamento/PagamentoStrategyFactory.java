@@ -1,4 +1,6 @@
-package contas;
+package contas.domain.strategies.pagamento;
+
+import contas.domain.enums.TipoPagamento;
 
 public class PagamentoStrategyFactory {
 

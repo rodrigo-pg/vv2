@@ -1,10 +1,13 @@
-package contas;
+package contas.domain.strategies.pagamento;
 
+import contas.domain.entities.Conta;
+import contas.domain.entities.Fatura;
+import contas.domain.entities.Pagamento;
 import utils.AppError;
 
 import java.util.Optional;
 
-public class PagamentoBoletoStrategy implements PagamentoStrategy{
+public class PagamentoBoletoStrategy implements PagamentoStrategy {
     private String tipo = "BOLETO";
 
     public String getTipo() {

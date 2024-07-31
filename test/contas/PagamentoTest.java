@@ -2,11 +2,15 @@ package contas;
 
 import static org.mockito.Mockito.*;
 
-import org.junit.jupiter.api.BeforeEach;
+import contas.domain.entities.Conta;
+import contas.domain.entities.Fatura;
+import contas.domain.entities.Pagamento;
+import contas.domain.enums.FaturaStatus;
+import contas.domain.enums.TipoPagamento;
+import contas.domain.strategies.pagamento.PagamentoBoletoStrategy;
+import contas.domain.strategies.pagamento.PagamentoStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.time.LocalDate;
 

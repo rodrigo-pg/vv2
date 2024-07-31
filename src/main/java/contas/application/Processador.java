@@ -1,7 +1,12 @@
-package contas;
+package contas.application;
+
+import contas.domain.entities.Conta;
+import contas.domain.entities.Fatura;
+import contas.domain.entities.Pagamento;
+import contas.domain.strategies.pagamento.PagamentoStrategy;
+import contas.domain.strategies.pagamento.PagamentoStrategyFactory;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Processador {
     private List<Conta> contas;

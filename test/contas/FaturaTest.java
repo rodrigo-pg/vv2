@@ -1,11 +1,11 @@
 package contas;
 
+import contas.domain.entities.Fatura;
+import contas.domain.enums.FaturaStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 

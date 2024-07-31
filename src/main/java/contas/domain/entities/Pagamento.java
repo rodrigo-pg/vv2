@@ -1,4 +1,6 @@
-package contas;
+package contas.domain.entities;
+
+import contas.domain.strategies.pagamento.PagamentoStrategy;
 
 import java.time.LocalDate;
 
