@@ -14,9 +14,13 @@ public class Ingresso {
 	private Validator validator;
 
 	public Ingresso(int id, TipoIngresso tipo, double precoBase) {
+		this(id, tipo, StatusIngresso.NAO_VENDIDO, precoBase);
+	}
+
+	public Ingresso(int id, TipoIngresso tipo, StatusIngresso vendido, double precoBase) {
 		this.id = id;
         this.tipo = tipo;
-        this.status = StatusIngresso.NAO_VENDIDO;
+        this.status = vendido;
         this.precoBase = precoBase;
         this.precoDesconto = this.getPreco();
         this.validator = new Validator();
