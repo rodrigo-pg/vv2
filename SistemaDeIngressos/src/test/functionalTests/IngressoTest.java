@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import main.java.enums.StatusIngresso;
 import main.java.enums.TipoIngresso;
 import main.java.model.Ingresso;
 
@@ -15,7 +16,7 @@ public class IngressoTest {
     private Ingresso ingressoVip = new Ingresso(2, TipoIngresso.VIP, 10.0);
     private Ingresso ingressoMeiaEntrada = new Ingresso(3, TipoIngresso.MEIA_ENTRADA, 10.0);
 	
-	
+    // Técnica: Análise de Valores Limites : testes para verificar o desconto no ingresso dependendo do seu tipo (VIP, NORMAL e MEIA_ENTRADA)
 	@Test
     @DisplayName("Desconto negativo deve resultar em erro")
     public void testeDescontoCaso12() {
@@ -97,7 +98,7 @@ public class IngressoTest {
     }
     
     
-    
+    // Técnica: Partições de Equivalência: testes para verificação dos Preços dos Ingressos
     @Test
     @DisplayName("Preço do ingresso NORMAL deve ser igual ao preço de referência de R$ 10,00")
     public void testePrecoNormal() {
@@ -117,4 +118,39 @@ public class IngressoTest {
         assertEquals(5.00, this.ingressoMeiaEntrada.getPrecoComDesconto(), 0.01);
     }
 
+    
+    // Técnica: Tabelas de Decisão: testes de criação do ingresso
+    @Test
+    @DisplayName("Regra 1: Ingresso criado com id válido, tipo válido e status informado")
+    public void testIngressoCriadoComIdETipoValidosEStatusInformado() {
+        new Ingresso(1, TipoIngresso.VIP, StatusIngresso.VENDIDO, 10);
+    }
+
+    @Test
+    @DisplayName("Regra 2: Ingresso criado com id válido, tipo válido e status não informado")
+    public void testIngressoCriadoComIdETipoValidosSemStatusInformado() {
+        new Ingresso(2, TipoIngresso.NORMAL, 10);
+    }
+
+    @Test
+    @DisplayName("Regra 3: Ingresso não criado com id inválido")
+    public void testIngressoNaoCriadoComIdInvalido() {
+        try {
+        	new Ingresso(-1, TipoIngresso.NORMAL, 10);
+            fail("Deveria lançar uma exceção aqui");
+        } catch (IllegalArgumentException e) {
+            assertEquals("ID inválido", e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Regra 4: Ingresso não criado com tipo inválido")
+    public void testIngressoNaoCriadoComTipoInvalido() {
+        try {
+        	new Ingresso(1, null,10);
+            fail("Deveria lançar uma exceção aqui");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Tipo de ingresso inválido", e.getMessage());
+        }
+    }
 }
