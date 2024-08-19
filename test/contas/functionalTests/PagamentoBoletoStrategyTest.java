@@ -18,20 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PagamentoBoletoStrategyTest {
 
+
     @Test
-    @DisplayName("Dado que o pagamento foi informado com um valor dentro dos limites e com uma data válida, quando ele for efetuado, deve ser contabilizado")
-    void testPagamentoValido() {
+    @DisplayName("Dado que o pagamento foi informado com um valor menor que o mínimo para essa estratégia, quando ele for efetuado, deve retornar um erro de validação")
+    void testLimiteMinimoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
-        LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE, 1L);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, LocalDate.parse("2023-02-20"), FaturaStatus.PENDENTE, 1L);
         Conta conta = Conta.build(
                 1L,
-                500.0,
-                data,
+                0.005,
+                LocalDate.parse("2023-02-05"),
                 TipoPagamento.BOLETO
         );
-        double valor = 0.005;
-        Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), LocalDate.parse("2023-02-05"), pagamentoBoletoStrategy, 1L, 1L);
 
         Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
@@ -39,19 +38,17 @@ public class PagamentoBoletoStrategyTest {
     }
 
     @Test
-    @DisplayName("Dado que o pagamento foi informado com um valor menor que o mínimo para essa estratégia, quando ele for efetuado, deve retornar um erro de validação")
-    void testLimiteMinimoPagamento() {
+    @DisplayName("Dado que o pagamento foi informado com um valor igual ao mínimo para essa estratégia, quando ele for efetuado, deve ser contabilizado")
+    void testValorMinimoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
-        LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE, 1L);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, LocalDate.parse("2023-02-20"), FaturaStatus.PENDENTE, 1L);
         Conta conta = Conta.build(
                 1L,
-                500.0,
-                data,
+                0.01,
+                LocalDate.parse("2023-02-05"),
                 TipoPagamento.BOLETO
         );
-        double valor = 500;
-        Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), LocalDate.parse("2023-02-05"), pagamentoBoletoStrategy, 1L, 1L);
 
         Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
@@ -62,16 +59,14 @@ public class PagamentoBoletoStrategyTest {
     @DisplayName("Dado que o pagamento foi informado com um valor maior que o máximo para essa estratégia, quando ele for efetuado, deve retornar um erro de validação")
     void testLimiteMaximoPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
-        LocalDate data = LocalDate.parse("2024-05-25");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE, 1L);
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, LocalDate.parse("2023-02-20"), FaturaStatus.PENDENTE, 1L);
         Conta conta = Conta.build(
                 1L,
-                500.0,
-                data,
+                5001.0,
+                LocalDate.parse("2023-02-05"),
                 TipoPagamento.BOLETO
         );
-        double valor = 5001;
-        Pagamento pagamento = Pagamento.build(valor, data, pagamentoBoletoStrategy, 1L, 1L);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), LocalDate.parse("2023-02-05"), pagamentoBoletoStrategy, 1L, 1L);
 
         Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
@@ -79,23 +74,60 @@ public class PagamentoBoletoStrategyTest {
     }
 
     @Test
-    @DisplayName("Dado que o pagamento foi informado com uma data posterior à data da conta, quando ele for efetuado, seu valor deve ser acrescido 10%")
-    void testAtrasoPagamento() {
+    @DisplayName("Dado que o pagamento foi informado com um valor igual o limite superior para essa estratégia, quando ele for efetuado, deve ser contabilizado")
+    void testValorLimiteSuperiorPagamento() {
         PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
-        LocalDate data = LocalDate.parse("2024-05-25");
-        LocalDate dataPagamento = LocalDate.parse("2024-05-26");
-        Fatura fatura = Fatura.build("Rodrigo", 700.0, data, FaturaStatus.PENDENTE, 1L);
+        LocalDate data = LocalDate.parse("2023-02-05");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, LocalDate.parse("2023-02-20"), FaturaStatus.PENDENTE, 1L);
         Conta conta = Conta.build(
                 1L,
-                500.0,
+                5000.0,
                 data,
                 TipoPagamento.BOLETO
         );
-        double valor = 600;
-        Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
-        double valorComJuros = pagamento.getValor() + (pagamento.getValor() * 0.1);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), data, pagamentoBoletoStrategy, 1L, 1L);
 
         Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
+
+        assertTrue(resultado.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Dado que o pagamento foi informado com um entre os limites para essa estratégia, quando ele for efetuado, deve ser contabilizado")
+    void testValorIntermediarioPagamento() {
+        PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
+        LocalDate data = LocalDate.parse("2023-02-05");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, LocalDate.parse("2023-02-20"), FaturaStatus.PENDENTE, 1L);
+        Conta conta = Conta.build(
+                1L,
+                1500.0,
+                data,
+                TipoPagamento.BOLETO
+        );
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), data, pagamentoBoletoStrategy, 1L, 1L);
+
+        Optional<AppError> resultado = pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
+
+        assertTrue(resultado.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Dado que o pagamento foi informado com uma data posterior à data da conta, quando ele for efetuado, seu valor deve ser acrescido 10%")
+    void testAtrasoPagamento() {
+        PagamentoBoletoStrategy pagamentoBoletoStrategy = new PagamentoBoletoStrategy();
+        LocalDate data = LocalDate.parse("2023-02-20");
+        LocalDate dataPagamento = LocalDate.parse("2023-02-21");
+        Fatura fatura = Fatura.build("Rodrigo", 1200.0, data, FaturaStatus.PENDENTE, 1L);
+        Conta conta = Conta.build(
+                1L,
+                1000.0,
+                data,
+                TipoPagamento.BOLETO
+        );
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
+        double valorComJuros = pagamento.getValor() + (pagamento.getValor() * 0.1);
+
+        pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
 
         assertEquals(valorComJuros, pagamento.getValor().floatValue());
     }

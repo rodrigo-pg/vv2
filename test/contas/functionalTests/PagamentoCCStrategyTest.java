@@ -14,24 +14,43 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PagamentoCCStrategyTest {
+
     @Test
     @DisplayName("Dado que a conta do pagamento possui uma data menor que 15 dias da fatura, quando ele for efetuado, o valor do pagamento deve zerar")
-    void testDataLimite() {
-        LocalDate dataConta = LocalDate.parse("2024-05-23");
-        LocalDate dataPagamento = LocalDate.parse("2024-05-26");
-        LocalDate dataFatura = LocalDate.parse("2024-05-26");
+    void testDataPagamentoIgualLimite() {
+        LocalDate dataPagamento = LocalDate.parse("2023-02-05");
+        LocalDate dataFatura = LocalDate.parse("2023-02-20");
         Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
-        PagamentoCCStrategy pagamentoBoletoStrategy = new PagamentoCCStrategy();
+        PagamentoCCStrategy pagamentoCCStrategy = new PagamentoCCStrategy();
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                dataConta,
-                TipoPagamento.BOLETO
+                dataPagamento,
+                TipoPagamento.CARTAO_CREDITO
         );
-        double valor = 600;
-        Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), dataPagamento, pagamentoCCStrategy, 1L, 1L);
 
-        pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
+        pagamento.efetuarPagamento(conta, fatura);
+
+        assertEquals(conta.getValorPago(), pagamento.getValor().intValue());
+    }
+
+    @Test
+    @DisplayName("Dado que a conta do pagamento possui uma data menor que 15 dias da fatura, quando ele for efetuado, o valor do pagamento deve zerar")
+    void testDataLimite() {
+        LocalDate dataPagamento = LocalDate.parse("2023-02-06");
+        LocalDate dataFatura = LocalDate.parse("2023-02-20");
+        Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
+        PagamentoCCStrategy pagamentoCCStrategy = new PagamentoCCStrategy();
+        Conta conta = Conta.build(
+                1L,
+                500.0,
+                dataPagamento,
+                TipoPagamento.CARTAO_CREDITO
+        );
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), dataPagamento, pagamentoCCStrategy, 1L, 1L);
+
+        pagamento.efetuarPagamento(conta, fatura);
 
         assertEquals(0, pagamento.getValor().intValue());
     }
@@ -39,21 +58,19 @@ public class PagamentoCCStrategyTest {
     @Test
     @DisplayName("Dado que a conta do pagamento possui uma data posterior a fatura, quando ele for efetuado, o valor do pagamento deve zerar")
     void testDataContaPosteriorFatura() {
-        LocalDate dataConta = LocalDate.parse("2024-05-27");
-        LocalDate dataPagamento = LocalDate.parse("2024-05-26");
-        LocalDate dataFatura = LocalDate.parse("2024-05-26");
+        LocalDate dataPagamento = LocalDate.parse("2023-02-21");
+        LocalDate dataFatura = LocalDate.parse("2023-02-20");
         Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
-        PagamentoCCStrategy pagamentoBoletoStrategy = new PagamentoCCStrategy();
+        PagamentoCCStrategy pagamentoCCStrategy = new PagamentoCCStrategy();
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                dataConta,
-                TipoPagamento.BOLETO
+                dataPagamento,
+                TipoPagamento.CARTAO_CREDITO
         );
-        double valor = 600;
-        Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), dataPagamento, pagamentoCCStrategy, 1L, 1L);
 
-        pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
+        pagamento.efetuarPagamento(conta, fatura);
 
         assertEquals(0, pagamento.getValor().intValue());
     }
@@ -61,23 +78,21 @@ public class PagamentoCCStrategyTest {
     @Test
     @DisplayName("Dado que a conta do pagamento possui uma data de pelo menos 15 dias da fatura, quando ele for efetuado, o pagamento deve ser efetuado")
     void testDataLimiteCorreta() {
-        LocalDate dataConta = LocalDate.parse("2024-05-10");
-        LocalDate dataPagamento = LocalDate.parse("2024-05-26");
-        LocalDate dataFatura = LocalDate.parse("2024-05-26");
+        LocalDate dataPagamento = LocalDate.parse("2023-02-04");
+        LocalDate dataFatura = LocalDate.parse("2023-02-20");
         Fatura fatura = Fatura.build("Rodrigo", 700.0, dataFatura, FaturaStatus.PENDENTE, 1L);
-        PagamentoCCStrategy pagamentoBoletoStrategy = new PagamentoCCStrategy();
+        PagamentoCCStrategy pagamentoCCStrategy = new PagamentoCCStrategy();
         Conta conta = Conta.build(
                 1L,
                 500.0,
-                dataConta,
-                TipoPagamento.BOLETO
+                dataPagamento,
+                TipoPagamento.CARTAO_CREDITO
         );
-        double valor = 600;
-        Pagamento pagamento = Pagamento.build(valor, dataPagamento, pagamentoBoletoStrategy, 1L, 1L);
+        Pagamento pagamento = Pagamento.build(conta.getValorPago(), dataPagamento, pagamentoCCStrategy, 1L, 1L);
 
-        pagamentoBoletoStrategy.efetuarPagamento(pagamento, conta, fatura);
+        pagamento.efetuarPagamento(conta, fatura);
 
-        assertEquals(valor, pagamento.getValor().intValue());
+        assertEquals(conta.getValorPago(), pagamento.getValor().intValue());
     }
 
 }
